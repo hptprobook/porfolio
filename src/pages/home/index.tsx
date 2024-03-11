@@ -11,12 +11,8 @@ const getOrDefaultFromLocalStorage = (key: string, defaultValue: string) => {
 };
 
 export const Home: React.FC = () => {
-  const [title, setTitle] = useState<string>(
-    getOrDefaultFromLocalStorage('title', introData.title)
-  );
-  const [description, setDescription] = useState<string>(
-    getOrDefaultFromLocalStorage('description', introData.description)
-  );
+  const [title, setTitle] = useState<string>(getOrDefaultFromLocalStorage('title', introData.title));
+  const [description, setDescription] = useState<string>(getOrDefaultFromLocalStorage('description', introData.description));
   const [isEditTitle, setEditTitle] = useState<boolean>(false);
   const [isEditDescription, setEditDescription] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -35,9 +31,7 @@ export const Home: React.FC = () => {
     setTitle(e.target.value);
   };
 
-  const handleChangeDescription = (
-    e: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
+  const handleChangeDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);
   };
 
@@ -60,15 +54,11 @@ export const Home: React.FC = () => {
     }
   };
 
-  const handleDescriptionKeyPress = (
-    e: React.KeyboardEvent<HTMLTextAreaElement>
-  ) => {
+  const handleDescriptionKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter') {
       saveDescription();
     } else if (e.key === 'Escape') {
-      setDescription(
-        getOrDefaultFromLocalStorage('DESC', introData.description)
-      );
+      setDescription(getOrDefaultFromLocalStorage('DESC', introData.description));
       setEditDescription(false);
     }
   };
@@ -82,10 +72,7 @@ export const Home: React.FC = () => {
           <meta name="description" content={meta.description} />
         </Helmet>
         <div className="intro_sec d-block d-lg-flex align-items-center ">
-          <div
-            className="h_bg-image order-1 order-lg-2 h-100 "
-            style={{ backgroundImage: `url(${introData.imgUrl})` }}
-          ></div>
+          <div className="h_bg-image order-1 order-lg-2 h-100 " style={{ backgroundImage: `url(${introData.imgUrl})` }}></div>
           <div className="text order-2 order-lg-1 h-100 d-lg-flex justify-content-center">
             <div className="align-self-center ">
               <div className="intro mx-auto">
@@ -107,11 +94,7 @@ export const Home: React.FC = () => {
                 <h1 className="fluidz-48 mb-1x">
                   <Typewriter
                     options={{
-                      strings: [
-                        introData.animated.first,
-                        introData.animated.second,
-                        introData.animated.third,
-                      ],
+                      strings: [introData.animated.first, introData.animated.second, introData.animated.third],
                       autoStart: true,
                       loop: true,
                       deleteSpeed: 10,
@@ -128,10 +111,7 @@ export const Home: React.FC = () => {
                     onKeyUp={handleDescriptionKeyPress}
                   />
                 ) : (
-                  <p
-                    className="mb-1x"
-                    onDoubleClick={() => setEditDescription(true)}
-                  >
+                  <p className="mb-1x" onDoubleClick={() => setEditDescription(true)}>
                     {description}
                   </p>
                 )}
@@ -152,6 +132,17 @@ export const Home: React.FC = () => {
                       <div className="ring three"></div>
                     </div>
                   </Link>
+                  <a
+                    target="_blank"
+                    href="https://drive.google.com/file/d/1XI1H_W0QhUU1Y-YJaaVdx8cWnh7MqO8o/view"
+                    id="button_p"
+                    className="ac_btn btn "
+                  >
+                    My CV
+                    <div className="ring one"></div>
+                    <div className="ring two"></div>
+                    <div className="ring three"></div>
+                  </a>
                 </div>
               </div>
             </div>
