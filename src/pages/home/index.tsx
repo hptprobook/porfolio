@@ -7,15 +7,16 @@ import { useEffect, useRef, useState } from 'react';
 
 const getOrDefaultFromLocalStorage = (key: string, defaultValue: string) => {
   const storedValue = localStorage.getItem(key);
-  return storedValue !== null ? storedValue : defaultValue;
+  return storedValue ? storedValue : defaultValue;
 };
 
 export const Home: React.FC = () => {
-  const [title, setTitle] = useState<string>(getOrDefaultFromLocalStorage('title', introData.title));
-  const [description, setDescription] = useState<string>(getOrDefaultFromLocalStorage('description', introData.description));
+  const [title, setTitle] = useState<string>(getOrDefaultFromLocalStorage('TITLE', introData.title));
+  const [description, setDescription] = useState<string>(getOrDefaultFromLocalStorage('DESC', introData.description));
   const [isEditTitle, setEditTitle] = useState<boolean>(false);
   const [isEditDescription, setEditDescription] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [avatar, setAvatar] = useState<string>(getOrDefaultFromLocalStorage('AVATAR', introData.imgUrl));
 
   useEffect(() => {
     if (isEditTitle && inputRef.current) {
@@ -63,6 +64,27 @@ export const Home: React.FC = () => {
     }
   };
 
+  const handleClickAvatar = () => {
+    if (inputRef.current) {
+      inputRef.current.click();
+    }
+  };
+
+  const handleChangeAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setAvatar(reader.result as string);
+      };
+
+      localStorage.setItem('AVATAR', avatar);
+
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <HelmetProvider>
       <section id="home" className="home">
@@ -72,7 +94,20 @@ export const Home: React.FC = () => {
           <meta name="description" content={meta.description} />
         </Helmet>
         <div className="intro_sec d-block d-lg-flex align-items-center ">
-          <div className="h_bg-image order-1 order-lg-2 h-100 " style={{ backgroundImage: `url(${introData.imgUrl})` }}></div>
+          <div
+            onDoubleClick={handleClickAvatar}
+            className="h_bg-image order-1 order-lg-2 h-100 "
+            style={{ backgroundImage: `url(${avatar})` }}
+          ></div>
+          <input
+            type="file"
+            ref={inputRef}
+            onChange={handleChangeAvatar}
+            style={{
+              display: 'none',
+            }}
+            accept="image/*"
+          />
           <div className="text order-2 order-lg-1 h-100 d-lg-flex justify-content-center">
             <div className="align-self-center ">
               <div className="intro mx-auto">
