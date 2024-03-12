@@ -93,6 +93,7 @@ export const Home: React.FC = () => {
           <title> {meta.title}</title>
           <meta name="description" content={meta.description} />
         </Helmet>
+
         <div className="intro_sec d-block d-lg-flex align-items-center ">
           <div
             onDoubleClick={handleClickAvatar}
@@ -123,7 +124,14 @@ export const Home: React.FC = () => {
                   />
                 ) : (
                   <h2 className="mb-1x">
-                    <span onDoubleClick={changeType}>{title}</span>
+                    <span
+                      onClick={() => {
+                        window.print();
+                      }}
+                      onDoubleClick={changeType}
+                    >
+                      {title}
+                    </span>
                   </h2>
                 )}
                 <h1 className="fluidz-48 mb-1x">
