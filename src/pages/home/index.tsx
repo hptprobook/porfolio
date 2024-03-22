@@ -125,9 +125,9 @@ export const Home: React.FC = () => {
                 ) : (
                   <h2 className="mb-1x">
                     <span
-                      onClick={() => {
-                        window.print();
-                      }}
+                      // onClick={() => {
+                      //   window.print();
+                      // }}
                       onDoubleClick={changeType}
                     >
                       {title}
