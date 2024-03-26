@@ -5,6 +5,7 @@ import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import { Link } from 'react-router-dom';
 
 interface Post {
   id: number;
@@ -94,9 +95,11 @@ export default function PostComponent() {
             <Card key={p.id} sx={{ maxWidth: 345, mt: 2 }}>
               <CardMedia component="img" height="140" image={p.image} alt={p.title} />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {p.title}
-                </Typography>
+                <Link to={`/post/${p.id}`}>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {p.title}
+                  </Typography>
+                </Link>
                 <Typography variant="body2" color="text.secondary">
                   {p.body}
                 </Typography>

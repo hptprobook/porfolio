@@ -126,5 +126,22 @@
       "image": "  https://cdn.britannica.com/92/212692-050-D53981F5/labradoodle-dog-stick-running-grass.jpg",
       "body": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo"
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "123456"
+    },
+    {
+      "id": "6a32",
+      "username": "",
+      "password": ""
+    },
+    {
+      "id": "96e6",
+      "username": "admin2",
+      "password": "123"
+    }
   ]
 }
